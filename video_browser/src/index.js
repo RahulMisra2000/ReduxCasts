@@ -37,7 +37,17 @@ class App extends Component {
       <div>
         <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo} />
-        <VideoList
+      
+  // *** We are passing 2 things to the VideoList component. It will receive it in the props property.
+  // The 2 things are onVideoSelect, which is a function... so we are sending a function
+  //              and videos, which is just data 
+      
+  // The onVideoSelct is interesting ..we are sending a function to a component and that component can send it down to its 
+  // component and eventually it can execute it and because the body of the function is setting the state ..so
+  // basically what is happening is, that a CHILD component is able to change the state of a parent component...
+  // In angular we did this by way of @output and events .... but the event handler was still in the parent .....
+  // here kinda the code is being sent down to the child, who can execute it ...
+      <VideoList
           onVideoSelect={selectedVideo => this.setState({ selectedVideo })}
           videos={this.state.videos}
         />
